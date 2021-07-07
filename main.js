@@ -3,9 +3,27 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+let articalHearts = document.querySelectorAll('.like')
 
+function likeCallback(e) {
+  let heart = e.target
+  if (e.target.innerText === "♡"){
+    mimicServerCall('randomUrl').then(function(serverMessage){
+      heart.innerHTML="♥"
+      heart.style.color= 'red'
+    })
+  }
+  else {
+    mimicServerCall('randomUrl').then(function(serverMessage){
+      heart.innerHTML="♡"
+      heart.style.color= ''
+    })
+  }
+}
 
-
+for (let glyph of articalHearts){
+  glyph.addEventListener("click", likeCallback)
+}
 
 //------------------------------------------------------------------------------
 // Don't change the code below: this function mocks the server response
